@@ -263,7 +263,7 @@ function App() {
     setName(fund.name);
     setAmount(fund.amount.toString());
     setDate(fund.date);
-    setPaymentMode(fund.paymentMode || "cash");
+ setPaymentMode(fund.payment_mode || "cash");
   };
 
   const handleEditSpending = (spend) => {
@@ -271,7 +271,7 @@ function App() {
     setName(spend.name);
     setAmount(spend.amount.toString());
     setDate(spend.date);
-    setPaymentMode(spend.paymentMode || "cash");
+    setPaymentMode(spend.payment_mode || "cash");
   };
 
   const handleDelete = async (id) => {
@@ -369,6 +369,8 @@ function App() {
     spend.name.toLowerCase().includes(spendingSearchTerm.toLowerCase())
   );
 
+  console.log(paymentMode);
+  
   return (
     <div className="app">
       <header className="app-header">
@@ -750,8 +752,9 @@ function App() {
                         <td className="amount">₹{fund.amount.toFixed(2)}</td>
                         <td className="date">{formatDate(fund.date)}</td>
                         <td className="payment-mode">
+                          
                           <span className={`payment-badge ${fund.paymentMode}`}>
-                            {fund.paymentMode === "online" ? "💳 " : "💵 "}
+                            {fund.payment_mode === "online" ? "💳 online" : "💵 Cash"}
                             {translations[language][fund.paymentMode]}
                           </span>
                         </td>
@@ -831,7 +834,7 @@ function App() {
                           <span
                             className={`payment-badge ${spend.paymentMode}`}
                           >
-                            {spend.paymentMode === "online" ? "💳 " : "💵 "}
+                            {spend.payment_mode === "online" ? "💳 online" : "💵 cash"}
                             {translations[language][spend.paymentMode]}
                           </span>
                         </td>
